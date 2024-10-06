@@ -9,13 +9,9 @@ export class StepStack extends cdk.Stack {
     super(scope, id, props)
 
     const helloFunction = new lambda.Function(this, 'MyLambdaFunction', {
-      code: lambda.Code.fromInline(`
-            exports.handler = (event, context, callback) => {
-                callback(null, "Hello World!")
-            }
-        `),
-      runtime: lambda.Runtime.NODEJS_18_X,
-      handler: 'index.handler',
+      code: lambda.Code.fromAsset('lambda'),
+      runtime: lambda.Runtime.PYTHON_3_12,
+      handler: 'hello_world.handler',
       timeout: cdk.Duration.seconds(3)
     })
 
